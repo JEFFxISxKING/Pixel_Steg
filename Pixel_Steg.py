@@ -67,8 +67,8 @@ def toBinString(msg):
 #Start
 start_image = 'Jeff_w_Arrows.png'
 msg = "CONGRATS!! You found the timestamp for --REDACTED--! Here is the stamp: --REDACTED--"
-offset = 30000
-interval = 3
+offset = 0
+interval = 0
 
 msg = toBinString(msg)
 
