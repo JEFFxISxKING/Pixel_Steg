@@ -30,7 +30,7 @@ def encodeImage(image_path, message, offset, interval):
 
     #print(height, width, _)
     #print(pixels)
-    #print(pixels[0,offset])
+    #print(pixels[0,offset])    
 
     for y in range(row,height):
         for x in range(pix, int(width), interval):
@@ -41,16 +41,17 @@ def encodeImage(image_path, message, offset, interval):
                 break
             # Update the pixel with modified values
             if msg[i] == "0":
-                pixels[y, x] = [0, 0, 0]
+                pixels[y, x] = [210, 200, 190] #210, 200, 190 = 0
             elif msg[i] == "1":
-                pixels[y, x] = [255, 255, 255]
+                pixels[y, x] = [210, 200, 191] #191 = 1
+            elif msg[i] == "#":
+                pixels[y, x] = [255, 0, 0]
             else:
-                
                 print("error")
             i += 1
                 
         #reset the x value
-        pix = x-width        
+        pix = x-width      
 
     output = Image.fromarray(pixels)
     return(output)
@@ -65,13 +66,14 @@ def toBinString(msg):
     return ''.join(binary_list)
 
 #Start
-start_image = 'Jeff_w_Arrows.png'
-msg = "CONGRATS!! You found the timestamp for --REDACTED--! Here is the stamp: --REDACTED--"
-offset = 0
-interval = 0
+start_image = 'Mantis.jpg'
+msg = "This is just some example text so you can try to reverse engineer this code"
+offset = 43210
+interval = 987
 
-msg = toBinString(msg)
+# '#' is the sentinel
+msg = toBinString(msg) + "#"
 
 newIMG = encodeImage(start_image, msg, offset, interval)
 
-save_image(newIMG, 'Rivals_Password.png')
+save_image(newIMG, 'Find_Me_Test.png')
