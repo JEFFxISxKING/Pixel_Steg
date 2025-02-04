@@ -34,16 +34,17 @@ def encodeImage(image_path, message, offset, interval):
 
     for y in range(row,height):
         for x in range(pix, int(width), interval):
-            # Get the current pixel
-            #r, g, b = pixels[y, x]
 
             if i >= len(msg):
                 break
+            # Get the current pixel
+            r, g, b = pixels[y, x]
+            
             # Update the pixel with modified values
             if msg[i] == "0":
-                pixels[y, x] = [210, 200, 190] #210, 200, 190 = 0
+                pixels[y, x] = [r, g, 190] #210, 200, 190 = 0
             elif msg[i] == "1":
-                pixels[y, x] = [210, 200, 191] #191 = 1
+                pixels[y, x] = [r, g, 191] #191 = 1
             elif msg[i] == "#":
                 pixels[y, x] = [255, 0, 0]
             else:
