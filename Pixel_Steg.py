@@ -20,9 +20,11 @@ def encodeImage(image_path, message, offset, interval):
 
 
     #make sure starting pixel is within range
+    row = offset // width
     if offset > width:
-        row = offset // width
         offset = offset % width
+    
+    
     
     #Starting pixel
     pix = offset
@@ -37,6 +39,7 @@ def encodeImage(image_path, message, offset, interval):
 
             if i >= len(msg):
                 break
+
             # Get the current pixel
             r, g, b = pixels[y, x]
             
@@ -67,14 +70,15 @@ def toBinString(msg):
     return ''.join(binary_list)
 
 #Start
-start_image = 'Mantis.jpg'
-msg = "This is just some example text so you can try to reverse engineer this code"
-offset = 43210
-interval = 987
+start_image = 'Test_Image.jpg'
+msg = "This is what I would hide in a message"
+offset = 111
+interval = 111
 
 # '#' is the sentinel
 msg = toBinString(msg) + "#"
 
+#print(msg)
 newIMG = encodeImage(start_image, msg, offset, interval)
 
-save_image(newIMG, 'Find_Me_Test.png')
+save_image(newIMG, 'Output.png')
